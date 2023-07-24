@@ -26,6 +26,9 @@ export class AppComponent {
   }
 
   getContent(): string | undefined {
+    if (!this.content) {
+        this.content = this.optionContentMap.get(this.selected);
+    }
     return this.optionContentMap.get(this.selected);
   }
 
