@@ -16,7 +16,8 @@ export class AppComponent {
   selected: string = '';
   content: string | undefined = '';
   secret = '';
-  resultToken: string = 'none'
+  resultToken: string = 'none';
+  base64encoded: boolean = true;
 
   ngOnInit() {
     this.optionContentMap.set('first', '{"test1":"result1"}');
@@ -39,7 +40,14 @@ export class AppComponent {
   }
 
   getSignedStringBase64(header: string, payload: string): string {
-    let hash = createHmac('sha256', this.stripSpacing(this.secret))
+    let decodedSecret = '';
+    console.log(this.base64encoded);
+    if (this.base64encoded === true) {
+        decodedSecret = Buffer.from(this.stripSpacing(this.secret), 'base64').toString('ascii');
+    } else {
+        decodedSecret = this.stripSpacing(this.secret);
+    }
+    let hash = createHmac('sha256', decodedSecret)
             .update(`${header}.${payload}`)
             .digest('hex');
     return URLSafeBase64.encode(Buffer.from(hash, 'hex'));
@@ -47,6 +55,10 @@ export class AppComponent {
 
   stripSpacing(text: string): string {
     return text.replace(/\s/g, '' );
+  }
+
+  toggleBase64Encoded(newState: boolean) {
+    this.base64encoded = newState;
   }
 
 }

@@ -22,6 +22,8 @@
       <input matInput type="text" placeholder="Enter secret" [(ngModel)]="secret">
     </mat-form-field>
     
+    <mat-checkbox class="checkbox" [checked]="base64encoded" (change)="toggleBase64Encoded($event.checked)">Secret is base64 encoded</mat-checkbox>
+
     <button mat-raised-button color="accent" (click)="generate()">Generate</button>
     
     <h2>Result token:</h2>
