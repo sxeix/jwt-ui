@@ -41,7 +41,6 @@ export class AppComponent {
 
   getSignedStringBase64(header: string, payload: string): string {
     let decodedSecret = '';
-    console.log(this.base64encoded);
     if (this.base64encoded === true) {
         decodedSecret = Buffer.from(this.stripSpacing(this.secret), 'base64').toString('ascii');
     } else {
