@@ -1,24 +1,29 @@
-<h1>JWT generator</h1>
-<mat-form-field>
-  <mat-label>Select project</mat-label>
-  <mat-select [(value)]="selected">
-    <mat-option value={{option}} *ngFor="let option of options">
-      {{option}}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
-
-<mat-form-field>
-    <mat-label>Configure jwt content</mat-label>
-    <textarea matInput placeholder="Content..." value={{getContent()}} [(ngModel)]="content"></textarea>
-</mat-form-field>
-
-<mat-form-field>
-  <mat-label>Secret</mat-label>
-  <input matInput type="text" placeholder="Enter secret" [(ngModel)]="secret">
-</mat-form-field>
-
-<button mat-raised-button color="accent" (click)="generate()">Generate</button>
-
-<h2>Result token:</h2>
-<p>{{resultToken}}</p>
+<div class="container">
+    <div class="title">
+        <h1>JWT GENERATOR</h1>
+    </div>
+    
+    <mat-form-field class="generic-field">
+      <mat-label>Select project</mat-label>
+      <mat-select [(value)]="selected">
+        <mat-option value={{option}} *ngFor="let option of options">
+          {{option}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field class="textfield">
+        <mat-label>Configure jwt content</mat-label>
+        <textarea rows=10 cols=50 matInput cdkTextareaAutosize placeholder="Content..." value={{getContent()}} [(ngModel)]="content"></textarea>
+    </mat-form-field>
+    
+    <mat-form-field class="generic-field">
+      <mat-label>Secret</mat-label>
+      <input matInput type="text" placeholder="Enter secret" [(ngModel)]="secret">
+    </mat-form-field>
+    
+    <button mat-raised-button color="accent" (click)="generate()">Generate</button>
+    
+    <h2>Result token:</h2>
+    <p>{{resultToken}}</p>
+</div>
